@@ -24,7 +24,6 @@ class TodosScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Todos'),
       ),
-      //passing in the ListView.builder
       body: ListView.builder(
         itemCount: todos.length,
         itemBuilder: (context, index) {
