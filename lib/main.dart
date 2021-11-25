@@ -36,13 +36,18 @@ class TodosScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(todo: todos[index]),
+                  builder: (context) => const DetailScreen(),
+                  // Pass the arguments as part of the RouteSettings. The
+                  // DetailScreen reads the arguments from these settings.
+                  settings: RouteSettings(
+                    arguments: todos[index],
+                  ),
                 ),
               );
             },
           );
         },
-      ),
+      )
     );
   }
 }
