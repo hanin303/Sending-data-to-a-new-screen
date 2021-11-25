@@ -1,19 +1,31 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
 class Todo {
   final String title;
   final String description;
 
   const Todo(this.title, this.description);
 }
-final todos = List.generate(
-  20,
-      (i) => Todo(
-    'Todo $i',
-    'A description of what needs to be done for Todo $i',
-  ),
-);
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: 'Passing Data',
+      home: TodosScreen(
+        todos: List.generate(
+          20,
+              (i) => Todo(
+            'Todo $i',
+            'A description of what needs to be done for Todo $i',
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 class TodosScreen extends StatelessWidget {
-  // Requiring the list of todos.
   const TodosScreen({Key? key, required this.todos}) : super(key: key);
 
   final List<Todo> todos;
@@ -29,9 +41,6 @@ class TodosScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(todos[index].title),
-            // When a user taps the ListTile, navigate to the DetailScreen.
-            // Notice that you're not only creating a DetailScreen, you're
-            // also passing the current todo through to it.
             onTap: () {
               Navigator.push(
                 context,
@@ -47,10 +56,11 @@ class TodosScreen extends StatelessWidget {
             },
           );
         },
-      )
+      ),
     );
   }
 }
+
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
 
